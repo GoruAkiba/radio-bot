@@ -1,28 +1,5 @@
-// server.js
-// where your node app starts
-
-// init project
-const express = require("express");
-const app = express();
-
-// we've started you off with Express,
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static("public"));
-
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + "/views/index.html");
-});
-
-// listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
-  console.log("Your app is listening on port " + listener.address().port);
-});
-
-
-
+//webserver
+require("./webServer.js")
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // *** Bot Setup ***
@@ -37,6 +14,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const {prefix, self_id , token, owner} = require(__dirname +'/server_setting.json');
 const {channel_limit} = require(__dirname + "/channel_limit.json");
+
 //settup commands folder
 const commandFiles = fs.readdirSync(__dirname + '/commands').filter(file => file.endsWith('.js'));
 
@@ -46,43 +24,58 @@ for (const file of commandFiles) {
   client.commands.set(command.aliases[0], command);
 }
 
+
+//Event handler
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
 
-
 client.on('message', message => {
+  //control message prefix
   if (!message.content.startsWith(prefix) || message.author.bot){
-    //lakukan sesuatu jika message tampa prefix
+    //do something when message without prefix detected
   };
   
   const args = message.content.slice(prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
+  
+  //log activity at cannels
   console.log(message.channel.id);
+  
+  
   if (!client.commands.has(commandName)) return;
   const comid = client.commands.get(commandName);
+  
+  //control if message come from DM
   if( message.guild === null || comid.AnyChannel){
-    // lakukan sesuatu ketika DM
-    console.log(client.users.me.id);
+    // do somenting when message dome from DM
+    // console.log(client.users.me.id);
     return null;
   }else{
-    // limit untuk channel tertentu
+    // limit commands from certain channels
     if (JSON.stringify(channel_limit).indexOf(message.channel.id)===-1 ) return;
   }
   if(comid.admin){
+    //control if the command is only for administrator
     if(self_id !== message.author.id){
       return message.channel.send("Just admin can access!!!");
     }
   }
   try {
+    //execute command
     comid.execute(message, args,client);
+    
   } catch (error) {
+    //log and push notif when err
     console.error(error);
     message.reply('there was an error trying to execute that command!');
   }
 });
 
 process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));
+
+//Login
 client.login(token).then(()=>{
+  //do somenting when logged
 });

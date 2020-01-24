@@ -3,7 +3,7 @@
   description: "play radio",
   aliases: ["radio"],
   NsfwStatus: false,
-  hidden: true,
+  hidden: false,
   async execute(message, args,client) {
     const {prefix,self_id}= require("../server_setting.json");
     const request = require("request");
@@ -47,36 +47,48 @@
           msg.channel.send(err.message)}
     })
     
-    
+    function tn(a,n=1){
+      var i = ("     ").repeat(n);
+      return a + i.slice(0,i.length-a.length);
+    }
     
     
     async function compose(message,channel){
       // console.log(cnt);
         
         var ane = message.guild.me.user,
-            name = ane.username,
+            name = `${message.guild.me.nickname || ane.username} | ${ane.tag}`,
             id = ane.id,
             avatar = ane.avatar,
-            cnt = [];
+            na = "",
+            cm = "";
       // console.log(name);
       
       await channel.map((ei,i)=>{
-        cnt.push({name:`[${i+1}] **${ei.name}**`,value:`command: \`${prefix} radio ${i+1}\``,inline:false})
+        var ni = i+1;
+        // cnt.push({name:`[${i+1}] **${ei.name}**`,value:`command: \`${prefix}radio ${i+1}\``,inline:false})
+        na += `${tn("["+ni+"]")} ${tn(ei.name,5)} \n`;
+        cm += `${prefix}radio ${ni} \n`;
       })
+      
+        var cnt = [
+          {name:tn("name : ",6), value:"```css\n"+na+"```",inline:true},
+          {name: tn("command : ",5),value:"```"+cm+"```",inline:true}
+        ]
         var exampleEmbed = await {
-                color: 0x33aaff,
-                title: "",
-                url: "",
-                author: {
-                  name: name,
-                  icon_url:
-                    ` https://cdn.discordapp.com/avatars/${id}/${avatar}.png`,
-                  url: ""
-                },
-                description: `**Channel Radio Tersedia:**\n *note: gunakan command di bawah untuk merekues!!!*`,
-                fields:cnt,
-                timestamp: new Date()
-              };
+          color: 0x33aaff,
+          title: "",
+          url: "",
+          author: {
+            name: name,
+            icon_url:
+              ` https://cdn.discordapp.com/avatars/${id}/${avatar}.png`,
+            url: ""
+          },
+          description: `**Channel Radio Tersedia:**\n *note: gunakan command di bawah untuk merekues!!!*`,
+          fields:cnt,
+          timestamp: new Date()
+        };
       return exampleEmbed;
     }
   }
