@@ -15,7 +15,7 @@ module.exports = {
     // console.log(client.guilds.get("509646264439144448"));
     for(const file of commandFiles){
       var cm = client.commands.get(file.replace(".js",""));
-      if(cm.hidden!==true) cmn += `${tn(cm.name,3)}[ ${cm.description} ] \n`;
+      if(cm.hidden!==true) cmn += `${tn(cm.name,3)}[ ${tn(cm.description,5)} ] \n`;
     };
     
     await channel_limit.map((ei,i)=>{

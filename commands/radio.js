@@ -1,12 +1,13 @@
   module.exports = {
   name: "radio",
   description: "play radio",
-  aliases: ["radio"],
+  aliases: ["ra"],
   NsfwStatus: false,
   hidden: false,
   async execute(message, args,client) {
     const {prefix,self_id}= require("../server_setting.json");
-    const request = require("request");
+    const request = require("request"),
+          fs = require("fs");
     
     if(!message.member) return message.channel.send("kirim mention join dums di server, baru request!!!");
     const { voiceChannel } = message.member;
@@ -27,19 +28,33 @@
 
         try{
           if(message.guild.me.voiceChannel) voiceChannel.leave();
-          voiceChannel.join().then(connection => {
+          voiceChannel.join().then( async connection => {
           // const stream = ytdl(args.join(), { filter: 'audioonly' });
           // console.log(stream);
           var stream = args[0].includes("http")? args[0]:channel[args[0]-1].uri;
           var nn = args[0].includes("http")? "something":channel[args[0]-1].name;
           client.user.setActivity("and Stream on : \n"+nn,{ url: stream,type: "WATCHING" });
           const dispatcher = connection.playStream(stream);
-            message.channel.send("Now Stream on : \n**"+nn+"**")
+            dispatcher.setVolume(args[1]/100||50/100);
+            message.channel.send("Now Stream on : \n**"+nn+"**");
+            if(fs.existsSync("./queue.json")) {console.log("file_ada"); await fs.unlinkSync("./queue.json")};
+            await fs.writeFile("./queue.json", JSON.stringify({queue:channel[args[0]-1]}), 'utf8', function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+
+                console.log("queue was saved!");
+            })
+            await fs.close;
             // process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));
-            dispatcher.on('end', () => {
+            dispatcher.on('end', async() => {
               if(!message.guild.me.voiceChannel)return;
               // voiceChannel.leave();
-              msg.channel.send("stream end")});
+              await fs.unlinkSync("./queue.json");
+              await msg.channel.send("stream end")
+              
+            });
+              
               
           });
         }catch(err){

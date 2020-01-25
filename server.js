@@ -25,6 +25,7 @@ for (const file of commandFiles) {
 }
 
 
+
 //Event handler
 client.once('ready', () => {
 	console.log('Ready!');

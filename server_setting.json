@@ -1,9 +1,8 @@
-
 {
-  "token":"Token",
-  "self_id":"Self ID",
+  "token":"BOT_Token",
+  "self_id":"Self_ID",
   "prefix":"; ",
   "owner":{
-    "id":"Owner ID"
+    "id":"Owner_ID"
   }
 }

@@ -18,7 +18,7 @@ On the back-end,
 - before deploy your app, you must edit and fulfill `server_setting.json` and `channel_limit.json`
 
   **server_setting.json**
-  ```javascript
+  ```json
   {
     "token":"BOT_Token",       // token | get from discord dev portall 
     "self_id":"Self_ID",       // simple, get from ur bot self_id
@@ -32,7 +32,7 @@ On the back-end,
   
   
   **channel_limit.json**
-  ```javascript
+  ```json
   {                           // do limit the command channels usage
     "channel_limit":[
       "Channel_1_ID",
