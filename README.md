@@ -42,7 +42,7 @@ On the back-end,
   ```
 
 
-Made by love
-------------
+Made with love
+---------------
 
 \ ゜o゜)ノ

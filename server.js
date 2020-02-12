@@ -1,5 +1,4 @@
-//webserver
-require("./webServer.js")
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // *** Bot Setup ***
@@ -14,6 +13,9 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const {prefix, self_id , token, owner} = require(__dirname +'/server_setting.json');
 const {channel_limit} = require(__dirname + "/channel_limit.json");
+
+
+
 
 //settup commands folder
 const commandFiles = fs.readdirSync(__dirname + '/commands').filter(file => file.endsWith('.js'));
@@ -79,4 +81,8 @@ process.on('unhandledRejection', error => console.error('Uncaught Promise Reject
 //Login
 client.login(token).then(()=>{
   //do somenting when logged
-});
+})
+
+//webserver
+var webserver = require("./webServer.js");
+webserver.exec(client);

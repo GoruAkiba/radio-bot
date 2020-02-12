@@ -18,7 +18,8 @@
     "ytdl-core": "^1.0.7",
     "node-opus": "^0.3.2",
     "ffmpeg-binaries": "^4.0.0",
-    "node-oculus": "^1.0.1"
+    "node-oculus": "^1.0.1",
+    "os-utils": "^0.0.14"
   },
   "engines": {
     "node": "8.x"

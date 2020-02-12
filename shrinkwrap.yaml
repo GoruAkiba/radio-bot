@@ -6,6 +6,7 @@ dependencies:
   fs: 0.0.2
   node-oculus: 1.0.1
   node-opus: 0.3.3
+  os-utils: 0.0.14
   request: 2.88.0
   ytdl-core: 1.0.7
 packages:
@@ -1157,6 +1158,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=
+  /os-utils/0.0.14:
+    dev: false
+    resolution:
+      integrity: sha1-KeURaXsZgrjGJ3Ihdf45eX72QVY=
   /osenv/0.1.5:
     dependencies:
       os-homedir: 1.0.2
@@ -1686,5 +1691,6 @@ specifiers:
   fs: ^0.0.2
   node-oculus: ^1.0.1
   node-opus: ^0.3.2
+  os-utils: ^0.0.14
   request: ^2.88.0
   ytdl-core: ^1.0.7
