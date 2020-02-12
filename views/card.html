@@ -1,0 +1,170 @@
+<html>
+  <head>
+    <title>Project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--     bootstrap init -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+<!--     jquery init -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+    
+    <script></script>
+    <style>
+      *{
+       transition: 0.5; 
+      }
+      
+      #head-info h4{
+        margin: auto;
+        position: relative;
+        width: 100%;
+        color: white;
+      }
+      
+      #head-info h4:after{
+        content: "Self-BOT";
+        font-size: 10px;
+        background-color: #66f;
+        padding: 2px;
+        border-radius: 3px;
+        position: absolute;
+        top: -2px;
+        
+      }
+      #head-info p{
+        margin: 5px;
+        color: white;
+      }
+      #head-info font{
+        background-color: #2a2a2a;
+        padding: 0px 5px 0px 5px;
+        border-radius: 5px
+      }
+      
+      .lg-logo{
+        background-color: #333;
+        --w : 120px;
+        margin: auto;
+        width: var(--w);
+        height: var(--w);
+        background-size: contain;
+        border-radius: 50%;
+      }
+      
+      @media screen and (max-width: 1000px){
+        #head-info {
+          margin: 25px;
+        }
+         .inline-blk{
+          display: inline-block;
+          position: relative;
+          vertical-align: middle
+        }
+      }
+      
+      #server_info h1{
+        padding-left: 25px;
+      }
+      #server_info h3{
+        width: 100%;
+        background-color: #aaa;
+        color : white;
+        padding-left: 25px;
+      }
+
+    </style>
+  </head>
+  <body class="bg-secondary" onload="onl()">
+    <div class="container-sm bg-white text-white mt-3 shadow p-0" style="width:80vw;min-width:500px">
+      <div class="row">
+        <div class="col-lg-3 bg-dark p-2">
+          <div id="head-info">
+            <h2>
+              LOADING...
+            </h2>
+            
+          </div>
+        </div>
+        <div class="col-lg-9 text-secondary bg-white p-0">
+          <div id="server_info">
+<!--             <h1>
+              SERVER
+            </h1> -->
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <script>
+      
+      
+      setInterval(upd,5000);
+      
+      function onl(){
+        $.get("/profile",(data,status)=>{
+          // console.log(data.name);
+          $("#head-info")[0].innerHTML = `
+        <div class="lg-logo shadow inline-blk" style="background-image:url(${data.avatar})">
+
+        </div>
+        <div class="inline-blk m-3 text-secondary">
+          <h4 style="margin: auto; position: relative" >${data.name}</h4>
+          <p>${data.description}</p>
+          Owned and scripted by <font>${data.owner.name}</font><br>
+          | prefix: <font>${data.prefix} </font> 
+        </div>
+          `;
+        })
+        upd()
+      }
+      
+      
+      function upd(){
+        $.get("/status",(data,status)=>{
+        var model ="";
+        for(var cpu of data.cpu ){
+          model+= `<li>${cpu.model} | speed : ${cpu.speed}</li>`;
+        }
+        $("#server_info")[0].innerHTML=`
+        <h3>Server Spec</h3>
+        <font style="margin-left:20px"><b>CPU : ${data.cpu.length} core | OS . ${data.platform}</b></font>
+        <ul>${model}</ul>
+        <h3>Server Status</h3>
+        <ul>
+          <li>Server Uptime : ${uptime(data.uptime)}</li>
+          <li>Total Memory  : ${Math.floor(data.totMem/1024/1024/1024*1000*0.8)/1000} GB</li>
+          <li>Free Memory   : ${Math.floor(data.freeMem/1024/1024/1024*1000*0.8)/1000} GB</li>
+        </ul>
+        <h3>Container Status</h3>
+        <ul>
+          <li>Memory Usage  : ${Math.floor(data.container.rss/1024/1024*1000*0.8)/1000} MB</li>
+          <li>CPU Usage     : ${Math.floor(data.cpuUsage*10000)/100}%</li>
+        </ul>
+        `;
+        
+      })
+      }
+      
+      function uptime(a){
+        a = parseInt(a);
+        var sm = 60,
+            sh = sm*60,
+            sd = sh*24,
+            da = Math.floor(a/sd),
+            hr = Math.floor(a%sd/sh),
+            mm = Math.floor(a%sh/sm),
+            ss = Math.floor(a%sm);
+        return `${da>0?da+"d":""} ${hr>0?hr+"hr":""} ${mm>0?mm+"m":""} ${ss>0?ss+"s":a%sm+"s"}`
+      }
+      
+      
+    </script>
+  </body>
+</html>
+    
