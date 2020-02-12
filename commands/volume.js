@@ -3,6 +3,7 @@ module.exports = {
   description: "set BOT volume",
   aliases: ["v"],
   NsfwStatus: false,
+  hidden:false,
   execute(message, args, client) {
     const msg = message.channel;
     if (!message.member)

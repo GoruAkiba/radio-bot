@@ -1,3 +1,6 @@
-{
-  "channel_limit": ["Channel_1_ID", "Channel_2_ID"]
+{                         
+  "channel_limit":[
+    "Channel_1_ID",
+    "Channel_2_ID"
+  ]
 }

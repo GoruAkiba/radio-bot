@@ -3,6 +3,7 @@ module.exports = {
   description: "help command!",
   aliases: ["?"],
   NsfwStatus: false,
+  hidden:false,
   async execute(message, args, client) {
     const { prefix, self_id, owner } = require("../server_setting.json"),
       { channel_limit } = require("../channel_limit.json");
@@ -16,8 +17,9 @@ module.exports = {
 
     for (const file of commandFiles) {
       var cm = client.commands.get(file.replace(".js", ""));
-      if (cm.hidden !== true)
-        cmn += `${tn(cm.name, 3)}[ ${tn(cm.description, 5)} ] \n`;
+
+        if (cm && cm.hidden !== true){cmn += `${tn(cm.name, 3)}[ ${tn(cm.description, 5)} ] \n`}
+      
     }
 
     await channel_limit.map((ei, i) => {

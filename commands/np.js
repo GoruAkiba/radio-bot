@@ -3,6 +3,7 @@ module.exports = {
   description: "get nowplaying track",
   aliases: ["np"],
   NsfwStatus: false,
+  hidden:false,
   execute(message, args, client) {
     const request = require("request"),
       fs = require("fs");

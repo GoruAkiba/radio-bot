@@ -1,8 +1,8 @@
 {
-  "token": "BOT_Token",
-  "self_id": "Self_ID",
-  "prefix": "m;",
-  "owner": {
-    "id": "Owner_ID"
-  }
+  "token":"BOT_Token",       
+  "self_id":"Self_ID",      
+  "prefix":"m;",             
+  "owner":{
+    "id":"Owner_ID"     
+  }     
 }
