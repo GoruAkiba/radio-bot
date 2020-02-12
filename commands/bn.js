@@ -3,6 +3,7 @@ module.exports = {
   description: "display server emoji!",
   aliases: ["em"],
   NsfwStatus: false,
+  hidden:true,
   async execute(message, args) {
     const Discord = require("discord.js");
     const tampan = require("discord.js").RichEmbed;

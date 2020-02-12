@@ -25,8 +25,18 @@
         color: white;
       }
       
-      #head-info h4:after{
+      #head-info .self:after{
         content: "Self-BOT";
+        font-size: 10px;
+        background-color: #66f;
+        padding: 2px;
+        border-radius: 3px;
+        position: absolute;
+        top: -2px;
+        
+      }
+      #head-info .bot:after{
+        content: "BOT";
         font-size: 10px;
         background-color: #66f;
         padding: 2px;
@@ -109,12 +119,13 @@
       function onl(){
         $.get("/profile",(data,status)=>{
           // console.log(data.name);
+          var bt = data.bot? "bot":"self";
           $("#head-info")[0].innerHTML = `
         <div class="lg-logo shadow inline-blk" style="background-image:url(${data.avatar})">
 
         </div>
         <div class="inline-blk m-3 text-secondary">
-          <h4 style="margin: auto; position: relative" >${data.name}</h4>
+          <h4 style="margin: auto; position: relative" class="${bt}">${data.name}</h4>
           <p>${data.description}</p>
           Owned and scripted by <font>${data.owner.name}</font><br>
           | prefix: <font>${data.prefix} </font> 

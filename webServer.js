@@ -51,13 +51,14 @@ module.exports={
       var ane = client.users.get(self_info.self_id),
           name = ane.username,
           id = ane.id,
+          bot = ane.bot,
           avatar = `https://cdn.discordapp.com/avatars/${id}/${ane.avatar}.png`;
       
       var owner = client.users.get(self_info.owner.id),
           o_name = owner.tag,
           o_id = owner.id,
           o_avatar = `https://cdn.discordapp.com/avatars/${o_id}/${owner.avatar}.png`;
-      response.send({name:name,id:id,avatar:avatar,prefix:self_info.prefix,project:project_info.name,version:project_info.version,description:project_info.description,owner:{name:o_name,id:o_id,avatar:o_avatar}});
+      response.send({name:name,id:id,bot:bot,avatar:avatar,prefix:self_info.prefix,project:project_info.name,version:project_info.version,description:project_info.description,owner:{name:o_name,id:o_id,avatar:o_avatar}});
     })
 
     // listen for requests :)
