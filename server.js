@@ -79,7 +79,7 @@ client.on('message', message => {
 process.on('unhandledRejection', error => console.error('Uncaught Promise Rejection', error));
 
 //Login
-client.login(token).then(()=>{
+client.login(process.env.TOKEN).then(()=>{
   //do somenting when logged
 })
 

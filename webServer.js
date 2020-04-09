@@ -9,7 +9,7 @@ module.exports={
     const app = express();
     const request = require("request");
     const os = require("os"),
-          osu = require("os-utils");;
+          osu = require("os-utils");
     const project_info = require("./package.json");
     const self_info = require("./server_setting.json");
 

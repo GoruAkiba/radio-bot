@@ -7,19 +7,19 @@
   "description": "A simple Node app built on Express, and Discord JS. running and handling stream.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev" : "node bin/dev"
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "discord.js": "^11.5.1",
-    "fs": "^0.0.2",
     "cheerio": "^0.22.0",
-    "request": "^2.88.0",
-    "ytdl-core": "^1.0.7",
-    "node-opus": "^0.3.2",
+    "discord.js": "^11.5.1",
+    "express": "^4.17.1",
     "ffmpeg-binaries": "^4.0.0",
-    "node-oculus": "^1.0.1",
-    "os-utils": "^0.0.14"
+    "fs": "^0.0.2",
+    "node-opus": "^0.3.2",
+    "os-utils": "^0.0.14",
+    "request": "^2.88.0",
+    "ytdl-core": "^1.0.7"
   },
   "engines": {
     "node": "8.x"
@@ -32,5 +32,8 @@
     "node",
     "glitch",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
