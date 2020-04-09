@@ -9,7 +9,8 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////
 const Discord = require('discord.js');
 const fs = require('fs');
-const client = new Discord.Client();
+const botClient = require("./structures/botClient");
+const client = new botClient();
 client.commands = new Discord.Collection();
 const {prefix, self_id , token, owner} = require(__dirname +'/server_setting.json');
 const {channel_limit} = require(__dirname + "/channel_limit.json");
@@ -38,6 +39,7 @@ client.on('message', message => {
   //control message prefix
   if (!message.content.startsWith(prefix) || message.author.bot){
     //do something when message without prefix detected
+    return;
   };
   
   const args = message.content.slice(prefix.length).split(/ +/);

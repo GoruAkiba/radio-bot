@@ -8,7 +8,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev" : "node bin/dev"
+    "dev": "node bin/dev"
   },
   "dependencies": {
     "cheerio": "^0.22.0",
@@ -17,9 +17,9 @@
     "ffmpeg-binaries": "^4.0.0",
     "fs": "^0.0.2",
     "node-opus": "^0.3.2",
-    "os-utils": "^0.0.14",
-    "request": "^2.88.0",
-    "ytdl-core": "^1.0.7"
+    "os-utils": "0.0.14",
+    "request": "^2.88.2",
+    "ytdl-core": "^1.0.9"
   },
   "engines": {
     "node": "8.x"

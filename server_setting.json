@@ -1,8 +1,18 @@
 {
   "token":"for_better_reassons_save_bot+tokken_on_.env",       
   "self_id":"686879930612449291",      
-  "prefix":"m;",             
+  "prefix":"m!",             
   "owner":{
-    "id":"Owner_ID"     
-  }     
+    "id":"598943183556313109"     
+  },
+  "usefulLink":[
+  		{
+			"name" : "invite",
+			"url" : "https://discordapp.com/oauth2/authorize?client_id={{botId}}&scope=bot&permissions=523328"
+		},
+		{
+			"name" : "Github_repo",
+			"url": "https://github.com/GoruAkiba/radio-bot/"
+		}
+  ]     
 }
