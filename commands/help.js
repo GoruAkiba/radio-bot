@@ -4,7 +4,7 @@ module.exports = {
   aliases: ["?"],
   NsfwStatus: false,
   hidden:false,
-  async execute(message, args, client) {
+  async execute(client, message, args) {
     const { prefix, self_id, owner } = require("../server_setting.json"),
       { channel_limit } = require("../channel_limit.json");
     const fs = require("fs");

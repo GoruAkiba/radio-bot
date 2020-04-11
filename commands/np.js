@@ -4,7 +4,7 @@ module.exports = {
   aliases: ["np"],
   NsfwStatus: false,
   hidden:false,
-  execute(message, args, client) {
+  execute(client, message, args) {
     const request = require("request"),
       fs = require("fs");
 

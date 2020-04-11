@@ -1,13 +1,17 @@
+// init
+const { prefix, self_id } = require("../server_setting.json");
+const request = require("request"),
+      fs = require("fs");
+
+
 module.exports = {
   name: "radio",
   description: "play radio",
   aliases: ["ra"],
   NsfwStatus: false,
   hidden: false,
-  async execute(message, args, client) {
-    const { prefix, self_id } = require("../server_setting.json");
-    const request = require("request"),
-      fs = require("fs");
+  async execute(client, message, args) {
+
 
     if (!message.member)
       return message.channel.send(

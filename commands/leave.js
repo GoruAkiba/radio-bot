@@ -4,7 +4,7 @@ module.exports = {
   aliases: ["dc"],
   NsfwStatus: false,
   hidden: false,
-  async execute(message, args, client) {
+  async execute(client, message, args) {
     if (!message.member) return;
     const { voiceChannel } = message.member,
       fs = require("fs");

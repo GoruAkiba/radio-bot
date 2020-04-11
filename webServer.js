@@ -68,7 +68,7 @@ module.exports={
 
 
     setInterval(() => {
-      request(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+      request(`${process.env.PROJECT_DOMAIN}`);
     }, 280000);
 
 

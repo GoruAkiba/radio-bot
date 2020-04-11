@@ -4,7 +4,7 @@ module.exports = {
   aliases: ["music"],
   NsfwStatus: false,
   hidden: true,
-  async execute(message, args, client) {
+  async execute(client, message, args) {
     const { self_id } = require("../server_setting.json");
     if (!message.member)
       return message.channel.send(
