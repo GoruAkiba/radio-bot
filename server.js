@@ -69,7 +69,7 @@ client.on('message', message => {
   }
   try {
     //execute command
-    comid.execute(message, args,client);
+    comid.execute(client, message, args);
     
   } catch (error) {
     //log and push notif when err
