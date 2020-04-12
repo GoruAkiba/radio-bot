@@ -49,6 +49,7 @@ module.exports = {
 
 // additional func
 async function compose(client, message, cmn, limit) {
+  const util = client.util;
   var ane = message.guild.me.user,
     name = `${message.guild.me.nickname || ane.username} | ${ane.tag}`,
     id = ane.id,

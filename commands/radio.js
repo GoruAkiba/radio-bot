@@ -37,6 +37,7 @@ module.exports = {
       // if there is no selection radioNumber from args, send list of reference
       if (!args[0]) {
         var emb = await compose(
+          client,
           message,
           channel
         );
@@ -107,8 +108,8 @@ module.exports = {
 
 
 // additional func
-async function compose(message, channel) {
-
+async function compose(client,message, channel) {
+  const util = client.util;
   var ane = message.guild.me.user,
       name = `${message.guild.me.nickname || ane.username} | ${ane.tag}`,
       id = ane.id,

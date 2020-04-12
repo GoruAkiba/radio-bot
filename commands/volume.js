@@ -2,9 +2,11 @@ module.exports = {
   name: "volume",
   description: "set BOT volume",
   aliases: ["v"],
+  admin: false,
+  hidden: true,
   NsfwStatus: false,
-  hidden:false,
-  execute(message, args, client) {
+  
+  execute(client,message, args) {
     const msg = message.channel;
     if (!message.member)
       return msg.send("kirim mention join dums di server, baru request!!!");
