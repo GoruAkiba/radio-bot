@@ -14,7 +14,7 @@
     "@discordjs/opus": "^0.8.0",
     "cheerio": "^0.22.0",
     "discord.js": "^11.5.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ffmpeg": "0.0.4",
     "ffmpeg-binaries": "^4.0.0",
     "fs": "^0.0.2",
